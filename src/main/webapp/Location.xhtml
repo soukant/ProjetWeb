@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"	>
+<h:head>
+<title>Vehicule</title>
+<h:outputStylesheet name="/css/bootstrap.min.css"/>  
+<style type="text/css">  
+table {  
+border-collapse: collapse;  
+width: 100%;  
+}  
+th, td {  
+text-align: left;  
+padding: 8px;  
+}  
+  
+tr:nth-child(even){background-color: #f2f2f2}  
+th {  
+background-color: #4CAF50;  
+color: white;  
+}  
+</style>  
+</h:head>
+<h:body>
+
+<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="map.html"> Map </a>
+		</div>
+		<div class="container-fluid">
+			<a class="navbar-brand" href="GpsTrackers.xhtml"> GpsTracker </a>
+		</div>
+	</nav>
+	<div>
+		<h:form>
+			<h:panelGrid columns="2">
+			
+				<h:outputText value="Marque:"></h:outputText>
+				<h:inputText value="#{locationMB.marque}"></h:inputText>
+				<h:outputText value="Matricule:"></h:outputText>
+				<h:inputText value="#{locationMB.matricule}"></h:inputText>
+				<h:outputText value="Type:"></h:outputText>
+				<h:inputText value="#{locationMB.type}"></h:inputText>
+				<h:commandButton action="#{locationMB.ajouter}" value="Ajouter" class="btn btn-success"></h:commandButton>
+				<h:commandButton action="#{locationMB.modifier}" value="Modifier" class="btn btn-primary"></h:commandButton>
+				
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<div>
+		<h:dataTable value="#{locationMB.listVehicules}" var="vh" class="table">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.id}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Marque"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.marque}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Matricule"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.matricule}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Type"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.type}"></h:outputText>
+			</h:column>
+		<h:column>
+				
+				<h:commandButton  action="#{LocationMB.remove(vh.id)}" value="Delete" class="btn btn-danger">
+				</h:commandButton>
+			</h:column>
+		
+		</h:dataTable>
+		
+	</div>
+</h:body>
+</html>

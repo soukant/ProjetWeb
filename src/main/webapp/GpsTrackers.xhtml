@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"	>
+<h:head>
+<title>GpsTracker</title>
+<h:outputStylesheet name="/css/bootstrap.min.css"/>  
+<style type="text/css">  
+table {  
+border-collapse: collapse;  
+width: 100%;  
+}  
+th, td {  
+text-align: left;  
+padding: 8px;  
+}  
+  
+tr:nth-child(even){background-color: #f2f2f2}  
+th {  
+background-color: #4CAF50;  
+color: white;  
+}  
+</style>  
+</h:head>
+<h:body>
+<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="Location.xhtml"> Vehicule </a>
+		</div>
+		<div class="container-fluid">
+			<a class="navbar-brand" href="map.html"> Map </a>
+		</div>
+	</nav>
+	<div>
+		<h:form>
+			<h:panelGrid columns="2">
+			
+				<h:outputText value="SimNumber:"></h:outputText>
+				<h:inputText value="#{locationGps.simNumber}"></h:inputText>
+				
+				<h:commandButton action="#{locationGps.ajouter}" value="Ajouter" class="btn btn-success"></h:commandButton>
+				<h:commandButton action="#{locationMB.update}" value="Modifier" class="btn btn-primary"></h:commandButton>
+			</h:panelGrid>
+		
+			
+		</h:form>
+	</div>
+	<div>
+		<h:dataTable value="#{locationGps.listGpsTracker}" var="vh" class="table">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.id}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="SimNumber"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{vh.simNumber}"></h:outputText>
+			</h:column>
+			
+		<h:column>
+				<h:commandButton  action="#{locationGps.delete}" value="Delete" class="btn btn-danger">
+				</h:commandButton>
+				
+			</h:column>
+			
+		</h:dataTable>
+		
+	</div>
+</h:body>
+</html>
